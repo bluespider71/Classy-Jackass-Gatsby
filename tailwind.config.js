@@ -2,6 +2,7 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx,html}", "./node_modules/tw-elements/dist/js/**/*.js"],
   theme: {
     container: {
       center: true,
@@ -140,5 +141,6 @@ module.exports = {
         },
       });
     }),
+    require('tw-elements/dist/plugin')
   ],
 };

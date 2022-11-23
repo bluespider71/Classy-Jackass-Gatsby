@@ -11,84 +11,30 @@ const Header = () => {
     { name: "Feed", href: "#feed" },
   ];
   return (
-    <header>
-      <nav class="navbar navbar-expand-lg shadow-md py-2 bg-black relative flex items-center w-full justify-between">
-        <div class="px-6 w-full flex flex-wrap items-center justify-between">
-          <div class="flex items-center">
-            <button
-              class="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out mr-2"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContentY"
-              aria-controls="navbarSupportedContentY"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                class="w-5"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                ></path>
-              </svg>
-            </button>
+    <header className="bg-black fixed z-[1000] w-full">
+      <div className="container mx-auto">
+        <div className="flex py-5 justify-between items-center">
+          <div className="flex flex-row gap-8 items-center">
+            <Link to="/">
+              <img className="h-8 w-auto" src={Logo} alt="Logo" />
+            </Link>
           </div>
-          <div
-            class="navbar-collapse grow items-center"
-            id="navbarSupportedContentY"
-          >
-            <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
-              <li class="nav-item">
+          <div className="flex flex-row gap-6">
+            <div className="md:flex flex-row gap-4 items-center">
+              {navigation.map((item) => (
                 <a
-                  class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-                  href="#!"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
+                  key={item.name}
+                  href={item.href}
+                  className="text-body-sm font-medium text-white hover:text-primary-600 px-4"
                 >
-                  Home
+                  {item.name}
                 </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-                  href="#!"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
-                >
-                  Features
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-                  href="#!"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li class="nav-item mb-2 lg:mb-0">
-                <a
-                  class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-                  href="#!"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
-                >
-                  About
-                </a>
-              </li>
-            </ul>
+              ))}
+            </div>
+            <Button label="CONTACT US" link="#" />
           </div>
         </div>
-      </nav>
+      </div>
     </header>
   );
 };

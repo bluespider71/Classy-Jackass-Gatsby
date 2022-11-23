@@ -24,15 +24,6 @@ const Hero = () => {
           }
         }
       },
-      secondheroimage: file(relativePath: { eq: "second-hero-image.png" }) {
-        childImageSharp {
-          gatsbyImageData(
-            width: 5120
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
-        }
-      },
     }
   `);
 
@@ -61,7 +52,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <GatsbyImage image={getImage(data.secondheroimage)} alt="Interior Design" />
+        
       </div>
     </div>
   );

@@ -3,21 +3,19 @@ import React from "react";
 import Seo from "../components/seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-// import Metrics from "../components/metrics";
-// import Services from "../components/services";
-// import Awards from "../components/awards";
 import About from "../components/about";
-// import Works from "../components/works";
+import Metrics from "../components/metrics";
+import Team from "../components/team";
+// import Feed from "../components/feed";
 
 const IndexPage = () => (
   <Layout>
     <Seo />
     <Hero />
-    {/* <Awards /> */}
     <About />
-    {/* <Metrics /> */}
-    {/* <Services /> */}
-    {/* <Works /> */}
+    <Metrics />
+    <Team />
+    {/* <Feed /> */}
   </Layout>
 );
 

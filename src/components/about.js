@@ -26,7 +26,7 @@ const About = () => {
           <div className="lg:col-span-6 flex flex-col gap-6">
             <Eyebrow label="ABOUT US" />
             <h2 className="font-display md:text-display-xl text-display-md font-normal pb-4">
-              Join the Mission
+              {/* Join the Mission */}
             </h2>
             <p className="md:text-body-lg text-body-md font-light text-neutral-700">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
