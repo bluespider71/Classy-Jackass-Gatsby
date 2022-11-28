@@ -12,6 +12,13 @@
   }
 }
 
-body, html {
+body,
+html {
   scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+.text-outline-marquee {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #b4a738;
 }

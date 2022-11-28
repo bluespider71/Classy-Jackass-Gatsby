@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "gatsby";
+// import { Link } from "gatsby";
 
-import Logo from "../images/logos/logo-light.svg";
-import Button from "./button";
+// import Logo from "../images/logos/logo-light.svg";
+// import Button from "./button";
 
 const Header = () => {
-  const navigation = [
-    { name: "About", href: "#about" },
-    { name: "Team", href: "#team" },
-    { name: "Feed", href: "#feed" },
-  ];
+  // const navigation = [
+  //   { name: "About", href: "#about" },
+  //   { name: "Team", href: "#team" },
+  //   { name: "Feed", href: "#feed" },
+  // ];
   return (
-    <header className="bg-black fixed z-[1000] w-full">
-      <div className="container mx-auto">
+    <header className="bg-black z-[1000] w-full h-[80px] max-md:h-[30px]">
+      {/* <div className="container mx-auto">
         <div className="flex py-5 justify-between items-center">
           <div className="flex flex-row gap-8 items-center">
             <Link to="/">
@@ -31,10 +31,10 @@ const Header = () => {
                 </a>
               ))}
             </div>
-            <Button label="CONTACT US" link="#" />
+            <Button label="Sign Up" link="#" />
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 };

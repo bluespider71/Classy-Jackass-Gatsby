@@ -2,7 +2,10 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  content: ["./src/**/*.{js,jsx,ts,tsx,html}", "./node_modules/tw-elements/dist/js/**/*.js"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx,html}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     container: {
       center: true,
@@ -115,6 +118,12 @@ module.exports = {
           lineHeight: "16px",
         },
       ],
+      "3x1": [
+        "4rem",
+        {
+          lineHeight: "7.125rem",
+        }
+      ]
     },
     boxShadow: {
       xs: "0px 1px 2px rgba(17, 24, 39, 0.05)",
@@ -131,6 +140,20 @@ module.exports = {
         30: "120px",
         62: "248px",
       },
+      animation: {
+        marquee: "marquee 50s linear infinite",
+        marquee2: "marquee2 50s linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        marquee2: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
     },
   },
   plugins: [
@@ -141,6 +164,6 @@ module.exports = {
         },
       });
     }),
-    require('tw-elements/dist/plugin')
+    require("tw-elements/dist/plugin"),
   ],
 };
