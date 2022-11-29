@@ -25,7 +25,7 @@ const Team = () => {
   return (
     <div id="team">
       <div className="sm:ml-16 mx-12">
-        <div className="flex flex-col py-18">
+        <div className="flex flex-col pt-18">
           {/* <div className="grid lg:grid-cols-12 grid-cols-1 gap-8">
             <div className="lg:col-span-8">
               <Eyebrow label="Team" />
