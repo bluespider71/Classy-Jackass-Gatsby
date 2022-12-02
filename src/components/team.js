@@ -1,46 +1,58 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-// import Eyebrow from "./eyebrow";
 import TeamItem from "./teamItem";
 
-const Team = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allTeamJson {
-        nodes {
-          name
+const query = graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
+  query {
+    allSanityTeams {
+      edges {
+        node {
           image {
-            childImageSharp {
-              gatsbyImageData(width: 512)
-            }
+            ...SanityImage
+            alt
           }
-          role
-          desc
         }
       }
     }
-  `);
+  }
+`;
+
+const Team = () => {
+  const data = useStaticQuery(query) || {};
+  const teamsData = data.allSanityTeams.edges;
 
   return (
     <div id="team">
       <div className="sm:ml-16 mx-12">
         <div className="flex flex-col pt-18">
-          {/* <div className="grid lg:grid-cols-12 grid-cols-1 gap-8">
-            <div className="lg:col-span-8">
-              <Eyebrow label="Team" />
-              <h2 className="font-display md:text-display-xl text-display-md pt-5">
-              </h2>
-            </div>
-          </div> */}
           <div className="flex sm:flex-row flex-col gap-5">
-            {data.allTeamJson.nodes.map((node) => (
+            {teamsData.map((team) => (
               <TeamItem
-                name={node.name}
-                key={node.name}
-                image={node.image}
-                role={node.role}
-                desc={node.desc}
+                image={team.node.image}
+                key={team.node.image.alt}
+                alt={team.node.image.alt}
               />
             ))}
           </div>

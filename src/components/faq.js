@@ -1,6 +1,6 @@
 import React from "react";
 
-const FAQ = () => {
+const Faq = () => {
   return (
     <div id="faq">
       <div className="pt-[2%] pb-[10%]">
@@ -13,4 +13,4 @@ const FAQ = () => {
     </div>
   );
 };
-export default FAQ;
+export default Faq;

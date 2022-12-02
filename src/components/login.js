@@ -20,7 +20,7 @@ const Login = () => {
           <div className="mb-4">
             <label
               className="block text-[#333333] text-sm font-bold mb-2"
-              for="name"
+              htmlFor="name"
             >
               Name <span className="text-[#ff273e]">*</span>
             </label>
@@ -28,7 +28,7 @@ const Login = () => {
               <div className="basis-1/2">
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-[#d9d9d9]"
-                  id="username"
+                  id="firstname"
                   type="text"
                   placeholder=""
                 />
@@ -37,7 +37,7 @@ const Login = () => {
               <div className="basis-1/2">
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-[#d9d9d9]"
-                  id="username"
+                  id="lastname"
                   type="text"
                   placeholder=""
                 />
@@ -48,7 +48,7 @@ const Login = () => {
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              for="password"
+              htmlFor="password"
             >
               Email <span className="text-[#ff273e]">*</span>
             </label>

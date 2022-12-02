@@ -18,6 +18,17 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        ...clientConfig.sanity,
+        token: process.env.SANITY_READ_TOKEN,
+        watchMode: !isProd,
+        overlayDrafts: !isProd,
+      },
+    },
+
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-transformer-json`,
@@ -61,15 +72,7 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-offline`,
-    {
-      resolve: "gatsby-source-sanity",
-      options: {
-        ...clientConfig.sanity,
-        token: process.env.SANITY_READ_TOKEN,
-        watchMode: !isProd,
-        overlayDrafts: !isProd,
-      },
-    },
+
     // Use this plugin if you are deploying you site to Gatsby Cloud
     // To learn more, visit: https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/deploying-to-gatsby-cloud/
     // `gatsby-plugin-gatsby-cloud`,

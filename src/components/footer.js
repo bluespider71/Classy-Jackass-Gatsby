@@ -1,21 +1,50 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { buildImageObj } from "../lib/helpers";
+import { imageUrlFor } from "../lib/image-url";
 
-const Footer = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allSocialJson {
-        nodes {
-          id
-          name
-          href
+const query = graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
+  query {
+    allSanitySocials {
+      edges {
+        node {
           icon {
-            publicURL
+            ...SanityImage
+            alt
           }
+          name
+          link
         }
       }
     }
-  `);
+  }
+`;
+
+const Footer = () => {
+  const data = useStaticQuery(query) || {};
+  const socialIcon = data.allSanitySocials.edges;
+
   return (
     <footer>
       <div className="container-fluid mx-auto">
@@ -27,19 +56,25 @@ const Footer = () => {
               </h6>
             </div>
             <div className="flex flex-row items-center py-4 gap-6 col-span-6 max-[768px]:justify-center justify-end">
-              {data.allSocialJson.nodes.map((node) => (
+              {socialIcon.map((item) => (
                 <a
-                  href={node.href}
-                  key={node.name}
+                  href={item.node.link}
+                  key={item.node.name}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-black h-7 w-7"
                 >
-                  <img
-                    className="m-auto"
-                    src={node.icon.publicURL}
-                    alt={node.name}
-                  />
+                  {item.node.icon && item.node.icon.asset && (
+                    <img
+                      src={imageUrlFor(buildImageObj(item.node.icon))
+                        .fit("crop")
+                        .auto("format")
+                        .url()}
+                      width=""
+                      className="m-auto"
+                      alt={item.node.icon.alt}
+                    />
+                  )}
                 </a>
               ))}
             </div>
