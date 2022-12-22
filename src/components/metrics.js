@@ -16,15 +16,15 @@ const Metrics = () => {
   const data = useStaticQuery(query) || {};
   const metricsData = data.allSanityStatistics.nodes;
   return (
-    <div>
-      <div className="mx-auto mb-10">
-        <div className="flex sm:flex-row flex-col gap-3">
+    <div className="metrics">
+      <div className="container mx-auto">
+        <div className="flex lg:flex-row flex-col gap-10">
           {metricsData.map((node) => (
-            <div className="basis-1/3" key={node.info}>
-              <p className="font-display md:text-display-lg text-display-md font-normal text-center">
+            <div className="basis-1/3 border-2 border-white rounded-[18px] py-[25px] px-[34px]" key={node.info}>
+              <p className="text-[108px] font-bold leading-[143px] text-center text-white">
                 {node.info}
               </p>
-              <p className="text-body-sm font-normal tracking-wider pt-2 text-center">
+              <p className="font-normal text-[24px] leading-[32px] text-center text-white">
                 {node.label}
               </p>
             </div>
