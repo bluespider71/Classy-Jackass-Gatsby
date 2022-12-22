@@ -1,50 +1,22 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+import MuxVideo from "@mux/mux-video-react";
 
 const query = graphql`
-  fragment SanityImage on SanityMainImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
-    }
-  }
   query {
     allSanitySiteSettings {
-      edges {
-        node {
-          heroimage {
-            ...SanityImage
-            alt
+      nodes {
+        herovideo {
+          asset {
+            _key
+            _type
+            status
+            assetId
+            playbackId
+            filename
+            thumbTime
+            __typename
           }
-        }
-      }
-    }
-    allSanitySocials {
-      edges {
-        node {
-          icon {
-            ...SanityImage
-            alt
-          }
-          name
-          link
         }
       }
     }
@@ -53,25 +25,31 @@ const query = graphql`
 
 const Hero = () => {
   const data = useStaticQuery(query) || {};
-  const heroimage = data.allSanitySiteSettings.edges[0].node.heroimage;
-  const socialIcon = data.allSanitySocials.edges;
+  const herovideo = data.allSanitySiteSettings.nodes[0].herovideo.asset;
+  console.log("herovideo: ", herovideo);
+  // const socialIcon = data.allSanitySocials.edges;
   return (
     <div id="hero">
       <div className="relative">
-        {heroimage && heroimage.asset && (
-          <img
-            src={imageUrlFor(buildImageObj(heroimage))
-              .fit("crop")
-              .auto("format")
-              .url()}
-            width="5120"
-            alt={heroimage.alt}
-          />
-        )}
+        <MuxVideo
+          style={{ width: "100%" }}
+          playbackId={herovideo.playbackId}
+          src={`https://stream.mux.com/${herovideo.playbackId}.m3u8`}
+          poster={`https://image.mux.com/${herovideo.playbackId}/thumbnail.png`}
+          metadata={{
+            video_id: "1",
+            video_title: "Hero Video",
+            viewer_user_id: "1",
+          }}
+          streamType="on-demand"
+          loop
+          autoPlay
+          muted
+        />
         <div className="absolute left-[19%] top-[45%] w-[21%] h-[5.2%]">
           <div className="social-links-buttons">
             <div className="flex flex-row justify-between">
-              {socialIcon.map((item) => (
+              {/* {socialIcon.map((item) => (
                 <a
                   href={item.node.link}
                   key={item.node.name}
@@ -91,7 +69,7 @@ const Hero = () => {
                     />
                   )}
                 </a>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
