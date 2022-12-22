@@ -1,40 +1,103 @@
 import React from "react";
-// import { Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
+import { buildImageObj } from "../lib/helpers";
+import { imageUrlFor } from "../lib/image-url";
 
-// import Logo from "../images/logos/logo-light.svg";
-// import Button from "./button";
+const query = graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
+  query {
+    allSanitySiteSettings {
+      edges {
+        node {
+          logoimage {
+            ...SanityImage
+            alt
+          }
+        }
+      }
+    }
+    allSanitySocials {
+      edges {
+        node {
+          icon {
+            ...SanityImage
+            alt
+          }
+          name
+          link
+        }
+      }
+    }
+  }
+`;
 
 const Header = () => {
-  // const navigation = [
-  //   { name: "About", href: "#about" },
-  //   { name: "Team", href: "#team" },
-  //   { name: "Feed", href: "#feed" },
-  // ];
+  const data = useStaticQuery(query) || {};
+  const logoimage = data.allSanitySiteSettings.edges[0].node.logoimage;
+  const socialIcon = data.allSanitySocials.edges;
+
   return (
-    <header className="bg-black z-[1000] w-full h-[80px] max-md:h-[30px]">
-      {/* <div className="container mx-auto">
-        <div className="flex py-5 justify-between items-center">
-          <div className="flex flex-row gap-8 items-center">
-            <Link to="/">
-              <img className="h-8 w-auto" src={Logo} alt="Logo" />
-            </Link>
-          </div>
-          <div className="flex flex-row gap-6">
-            <div className="md:flex flex-row gap-4 items-center">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-body-sm font-medium text-white hover:text-primary-600 px-4"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-            <Button label="Sign Up" link="#" />
-          </div>
+    <header className="bg-black w-full px-[60px] py-7 flex md:flex-row flex-col gap-4">
+      <div className="basis-1/2">
+        <Link to="/">
+          {logoimage && logoimage.asset && (
+            <img
+              src={imageUrlFor(buildImageObj(logoimage))
+                .fit("crop")
+                .auto("format")
+                .url()}
+              className=""
+              alt={logoimage.alt}
+            />
+          )}
+        </Link>
+      </div>
+      <div className="basis-1/2">
+        <div className="flex flex-row justify-end gap-8">
+          {socialIcon.map((item) => (
+            <a
+              href={item.node.link}
+              key={item.node.name}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-black h-7 w-7"
+            >
+              {item.node.icon && item.node.icon.asset && (
+                <img
+                  src={imageUrlFor(buildImageObj(item.node.icon))
+                    .fit("crop")
+                    .auto("format")
+                    .url()}
+                  width=""
+                  className="m-auto"
+                  alt={item.node.icon.alt}
+                />
+              )}
+            </a>
+          ))}
         </div>
-      </div> */}
+      </div>
     </header>
   );
 };
