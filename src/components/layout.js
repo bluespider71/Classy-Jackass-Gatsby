@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
 import Header from "./header";
-import Footer from "./footer";
+// import Footer from "./footer";
 
 const Layout = ({ children }) => (
   <>
@@ -13,7 +13,7 @@ const Layout = ({ children }) => (
     <div>
       <main>{children}</main>
     </div>
-    <Footer />
+    {/* <Footer /> */}
   </>
 );
 
