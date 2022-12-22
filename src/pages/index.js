@@ -7,7 +7,7 @@ import About from "../components/about";
 import Metrics from "../components/metrics";
 import Team from "../components/team";
 import Feed from "../components/feed";
-import Login from "../components/login";
+import Signup from "../components/signup";
 import Faq from "../components/faq";
 
 const IndexPage = () => {
@@ -22,7 +22,7 @@ const IndexPage = () => {
           <Feed />
         </div>
         <div className="basis-1/2">
-          <Login />
+          <Signup />
           <Faq />
           <Metrics />
         </div>
