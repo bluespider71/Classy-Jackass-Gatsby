@@ -21,10 +21,10 @@ const Metrics = () => {
         <div className="flex lg:flex-row flex-col gap-10">
           {metricsData.map((node) => (
             <div className="basis-1/3 border-2 border-white rounded-[18px] py-[25px] px-[34px]" key={node.info}>
-              <p className="text-[108px] font-bold leading-[143px] text-center text-white">
+              <p className="text-[100px] font-bold leading-[143px] text-center text-white">
                 {node.info}
               </p>
-              <p className="font-normal text-[24px] leading-[32px] text-center text-white">
+              <p className="font-normal text-[20px] leading-[32px] text-center text-white">
                 {node.label}
               </p>
             </div>

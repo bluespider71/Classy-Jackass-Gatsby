@@ -61,9 +61,13 @@ const Hero = () => {
             <span>COMING SOON - </span>
             <span>COMING SOON - </span>
             <span>COMING SOON - </span>
+            <span>COMING SOON - </span>
+            <span>COMING SOON - </span>
           </div>
 
           <div className="absolute top-0 animate-marquee2 whitespace-nowrap">
+            <span>COMING SOON - </span>
+            <span>COMING SOON - </span>
             <span>COMING SOON - </span>
             <span>COMING SOON - </span>
             <span>COMING SOON - </span>

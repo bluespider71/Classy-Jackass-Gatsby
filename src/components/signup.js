@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import addToMailchimp from "gatsby-plugin-mailchimp";
-// import { useStaticQuery, graphql } from "gatsby";
-// import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
-// import AwardBadge from "../images/award-badge.svg";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [email, setEmail] = useState("");
-
-  const _handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+    let { fname, lname, email } = data;
     let listFields = {
       FNAME: fname,
       LNAME: lname,
@@ -20,86 +20,76 @@ const Signup = () => {
     const result = await addToMailchimp(email, listFields);
     if (result && result.result === "success") {
       alert(result.msg);
-      setFname("");
-      setLname("");
-      setEmail("");
+      // reset();
     }
   };
 
   return (
     <div id="signup">
-      <div className="pt-[18%] max-lg:pt-0 pb-[10%]">
-        <div className="text-center">
-          <h2 className="font-['Roboto'] font-[500] sm:text-[61px] text-[40px] leading-[150px]">
-            JOIN THE MISSION
-          </h2>
+      <div className="container mx-auto">
+        <div className="flex lg:flex-row flex-col gap-10 lg:py-32 py-12">
+          <div className="basis-1/2">
+            <p className="font-bold text-[72px] lg:text-left text-center leading-[72px] text-white">
+              JOIN THE MISSION
+            </p>
+          </div>
+          <div className="basis-1/2">
+            <form className="" onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <div className="flex lg:flex-row flex-col gap-8">
+                  <div className="basis-1/2">
+                    <input
+                      className="rounded-[18px] w-full py-[18px] px-[24px] leading-[32px] border-2 text-[24px] placeholder-white
+                       border-white bg-transparent text-white"
+                      type="text"
+                      {...register("fname", { required: true })}
+                      placeholder="first name"
+                    />
+                    {errors.fname && (
+                      <p className="text-[red] pl-[1rem]">
+                        First Name is required.
+                      </p>
+                    )}
+                  </div>
+                  <div className="basis-1/2">
+                    <input
+                      className="rounded-[18px] w-full py-[18px] px-[24px] leading-[32px] border-2 text-[24px] 
+                      placeholder-white border-white bg-transparent text-white"
+                      type="text"
+                      placeholder="last name"
+                      {...register("lname", { required: true })}
+                    />
+                    {errors.lname && (
+                      <p className="text-[red]  pl-[1rem]">
+                        Last Name is required.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="py-[40px]">
+                <input
+                  className="rounded-[18px] w-full py-[18px] px-[24px] leading-[32px] border-2 text-[24px] placeholder-white
+                       border-white bg-transparent text-white"
+                  type="email"
+                  placeholder="email"
+                  {...register("email", { required: true })}
+                />
+                {errors.email && (
+                  <p className="text-[red] pl-[1rem]">Email is required.</p>
+                )}
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  className="bg-white rounded-[18px] hover:bg-[#cbd5e1] text-[24px] leading-[32px] font-normal text-black py-[18px] px-[24px]"
+                  type="submit"
+                >
+                  submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="border-t-[1px] border-black w-[25%] m-auto"></div>
-      </div>
-      <div className="w-full">
-        <form
-          className="border-t-[1px] border-b-[1px] border-solid border-[#efefef] px-4 pt-6 pb-8 mb-4"
-          onSubmit={_handleSubmit}
-        >
-          <div className="mb-4">
-            <label
-              className="block text-[#333333] text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Name <span className="text-[#ff273e]">*</span>
-            </label>
-            <div className="flex gap-5">
-              <div className="basis-1/2">
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-[#d9d9d9]"
-                  id="fname"
-                  type="text"
-                  value={fname}
-                  onChange={(e) => setFname(e.target.value)}
-                  placeholder=""
-                />
-                <span className="text-sm">First</span>
-              </div>
-              <div className="basis-1/2">
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-[#d9d9d9]"
-                  id="lname"
-                  type="text"
-                  placeholder=""
-                  value={lname}
-                  onChange={(e) => setLname(e.target.value)}
-                />
-                <span className="text-sm">Last</span>
-              </div>
-            </div>
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email <span className="text-[#ff273e]">*</span>
-            </label>
-            <input
-              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline border-[#d9d9d9]"
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {/* <p className="text-red-500 text-xs italic">
-              Please choose a password.
-            </p> */}
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-[#eeeeee] hover:bg-blue-700 text-[#333333] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   );

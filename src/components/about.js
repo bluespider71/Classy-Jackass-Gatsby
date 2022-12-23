@@ -63,7 +63,7 @@ const About = () => {
             )}
           </div>
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <h2 className="font-bold sm:text-[80px] text-[50px] leading-[92px] text-white">
+            <h2 className="font-bold sm:text-[72px] text-[50px] leading-[92px] text-white">
               {aboutData.title}
             </h2>
             <p className="font-normal text-[18px] text-white">

@@ -59,44 +59,49 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="container mx-auto">
-        <div className="flex flex-row justify-center py-10 gap-20">
-          {socialIcon.map((item) => (
-            <div
-              className="border-2 border-white rounded-[44px] w-[110px] py-[13px]"
-              key={item.node.name}
-            >
-              <Link
-                to={item.node.link}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-black h-7 w-7"
+      <div className="container">
+        <div className="sm:w-[450px] mx-auto w-fill">
+          <div className="flex flex-row justify-between py-[60px]">
+            {socialIcon.map((item) => (
+              <div
+                className="border-2 border-white rounded-[44px] w-[110px] py-[13px]"
+                key={item.node.name}
               >
-                {item.node.icon && item.node.icon.asset && (
-                  <img
-                    src={imageUrlFor(buildImageObj(item.node.icon))
-                      .fit("crop")
-                      .auto("format")
-                      .url()}
-                    className="m-auto"
-                    alt={item.node.icon.alt}
-                  />
-                )}
-              </Link>
-            </div>
-          ))}
-        </div>
-        <div className="pt-[20px]">
-          {logoimage && logoimage.asset && (
-            <img
-              src={imageUrlFor(buildImageObj(logoimage))
-                .fit("crop")
-                .auto("format")
-                .url()}
-              className=""
-              alt={logoimage.alt}
-            />
-          )}
+                <Link
+                  to={item.node.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-black h-7 w-7"
+                >
+                  {item.node.icon && item.node.icon.asset && (
+                    <img
+                      src={imageUrlFor(buildImageObj(item.node.icon))
+                        .fit("crop")
+                        .auto("format")
+                        .url()}
+                      className="m-auto"
+                      alt={item.node.icon.alt}
+                    />
+                  )}
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div>
+            {logoimage && logoimage.asset && (
+              <img
+                src={imageUrlFor(buildImageObj(logoimage))
+                  .fit("crop")
+                  .auto("format")
+                  .url()}
+                className="m-auto w-full"
+                alt={logoimage.alt}
+              />
+            )}
+          </div>
+          <div className="text-center pt-[24px] pb-[60px]">
+            <p className="font-normal text-[16px] leading-[21px] text-white">© 2022, Classy Jackass. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
