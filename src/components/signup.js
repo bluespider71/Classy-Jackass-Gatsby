@@ -17,9 +17,12 @@ const Signup = () => {
       EMAIL: email,
     };
     const result = await addToMailchimp(email, listFields);
+    console.log(result);
     if (result && result.result === "success") {
       alert(result.msg);
       reset();
+    } else {
+      alert(result.msg);
     }
   };
 

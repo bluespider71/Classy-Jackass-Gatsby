@@ -2,7 +2,6 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
-import { Link } from "gatsby";
 
 const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -67,8 +66,8 @@ const Footer = () => {
                 className="border-2 border-white rounded-[44px] w-[110px] py-[13px]"
                 key={item.node.name}
               >
-                <Link
-                  to={item.node.link}
+                <a
+                  href={item.node.link}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-black h-7 w-7"
@@ -83,7 +82,7 @@ const Footer = () => {
                       alt={item.node.icon.alt}
                     />
                   )}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
