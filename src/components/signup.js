@@ -10,7 +10,6 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
     let { fname, lname, email } = data;
     let listFields = {
       FNAME: fname,
