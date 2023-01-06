@@ -105,7 +105,7 @@ const Team = () => {
                           .auto("format")
                           .url()}
                         alt={team.node.image.alt}
-                        className="object-cover object-center w-full"
+                        className="object-cover object-center w-[286px]"
                       />
                     </div>
                   ))
